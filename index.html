@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS.A app</title>
+    <style>
+        body {
+            font-family: 'Abril Fatface', sans-serif;
+            background-color: #f0f2f5;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+    background-image: url("imageforMSA.png"); 
+    background-size: cover;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: opacity 0.5s ease;
+}
+
+        .logo {
+            max-width: 100%;
+            margin-bottom: 15px;
+        }
+
+        input {
+            background-color: #CDFFF6;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #000000;
+            border-radius: 20px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-origin: center;
+        }
+
+        input:hover {
+            background-color: #E6FFFA;
+            border-color: #66C7FF;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        input::placeholder {
+            transition: placeholder 0.3s ease;
+        }
+
+        button, .email-button {
+            background-color: #179982;
+            color: #fff;
+            padding: 10px;
+            border: 2px solid #000000;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        button:hover, .email-button:hover {
+            background-color: #136A5B;
+            border-color: #000000;
+            animation: pulse 0.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.05);
+            }
+        }
+
+        .design {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #FFD700; 
+            border-radius: 50%;
+            pointer-events: none; 
+            transition: all 0.3s ease;
+        }
+
+        .rainbow-border {
+            animation: rainbow 2s infinite;
+        }
+
+        @keyframes rainbow {
+            0% {
+                border-color: red;
+            }
+            16% {
+                border-color: orange;
+            }
+            33% {
+                border-color: yellow;
+            }
+            50% {
+                border-color: green;
+            }
+            67% {
+                border-color: blue;
+            }
+            83% {
+                border-color: indigo;
+            }
+            100% {
+                border-color: violet;
+            }
+        }
+
+       
+        @keyframes placeholder-swipe {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        .placeholder-swipe {
+            animation: placeholder-swipe 0.5s ease;
+        }
+
+        
+        @keyframes pop {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pop-animation {
+            animation: pop 0.5s ease;
+        }
+
+        .create-account-link {
+            color: #136A5B;
+            text-decoration: none;
+            transition: color 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .create-account-link:hover {
+            color: #179982;
+        }
+
+        
+        .fade-in {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container fade-in"> 
+        <img class="logo" src="MSAlogo.png" alt="Logo">
+        <form id="loginForm">
+            <input type="text" id="inputField" placeholder="Enter your phone number">
+            <input type="password" placeholder="Password">
+            <button id="loginButton" type="submit">Login</button>
+            <div class="or-text">Or continue with:</div>
+            <button class="email-button" type="button">Email</button>
+        </form>
+        <a href="#" class="create-account-link">Create an account</a>
+    </div>
+    
+    <script>
+        // Function to switch between login and create account sections
+        function switchToCreateAccount() {
+            var loginContainer = document.querySelector('.login-container');
+            loginContainer.classList.remove('fade-in'); 
+            setTimeout(function() {
+                loginContainer.innerHTML = `
+                    <img class="logo" src="file:///C:/Users/Admin/Downloads/mmmsssaaaa-removebg-preview.png" alt="Logo">
+                    <div class="container">
+                        <h2>Create an Account</h2>
+                        <form id="signupForm">
+                            <input type="text" id="username" name="username" placeholder="Enter your username" required><br>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required><br>
+                            <input type="password" id="password" name="password" placeholder="Enter your password" required><br>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required><br>
+                            <div class="button-container">
+                                <button type="submit">Create Account</button>
+                                <button id="backToLoginButton" type="button">Back to Login</button>
+                            </div>
+                        </form>
+                    </div>
+                `;
+                loginContainer.classList.add('fade-in');
+                // Add event listener for back to login button
+                document.getElementById('backToLoginButton').addEventListener('click', switchToLogin);
+            }, 500); 
+        }
+
+        // Function to switch back to login section
+        function switchToLogin() {
+            var loginContainer = document.querySelector('.login-container');
+            loginContainer.classList.remove('fade-in'); 
+            setTimeout(function() {
+                loginContainer.innerHTML = `
+                    <img class="logo" src="MSAlogo.png" alt="Logo">
+                    <form id="loginForm">
+                        <input type="text" id="inputField" placeholder="Enter your phone number">
+                        <input type="password" placeholder="Password">
+                        <button id="loginButton" type="submit">Login</button>
+                        <div class="or-text">Or continue with:</div>
+                        <button class="email-button" type="button">Email</button>
+                    </form>
+                    <a href="#" class="create-account-link">Create an account</a>
+                `;
+                loginContainer.classList.add('fade-in'); 
+               
+                document.querySelector('.email-button').addEventListener('click', switchEmailPlaceholder);
+                document.querySelector('.create-account-link').addEventListener('click', switchToCreateAccount);
+            }, 500); 
+        }
+
+
+        function switchEmailPlaceholder() {
+            var input = document.getElementById('inputField');
+            var buttonText = document.querySelector('.email-button');
+            
+            if (input.getAttribute('placeholder') === 'Enter your phone number') {
+                input.setAttribute('id', 'emailAddressInput');
+                input.setAttribute('placeholder', 'Enter your email address');
+                buttonText.innerText = 'Phone';
+                input.classList.add('placeholder-swipe');
+                input.classList.add('pop-animation');
+            } else {
+                input.setAttribute('id', 'phoneNumberInput');
+                input.setAttribute('placeholder', 'Enter your phone number');
+                buttonText.innerText = 'Email';
+                input.classList.add('placeholder-swipe');
+                input.classList.add('pop-animation');
+            }
+        }
+
+ 
+        document.getElementById('loginButton').addEventListener('click', function() {
+            document.getElementById('inputField').setAttribute('placeholder', 'Enter your phone number');
+            document.getElementById('inputField').classList.remove('placeholder-swipe');
+        });
+
+        document.querySelector('.email-button').addEventListener('click', switchEmailPlaceholder);
+        document.querySelector('.create-account-link').addEventListener('click', switchToCreateAccount);
+
+        document.addEventListener('mousemove', function(event) {
+            const cursor = document.querySelector('.rainbow-border');
+            cursor.style.left = event.pageX + 'px';
+            cursor.style.top = event.pageY + 'px';
+        });
+         function handleLogin(event) {
+          
+            event.preventDefault();
+
+           
+            window.location.href = "message.html";
+        }
+
+        
+        document.getElementById('loginForm').addEventListener('submit', handleLogin);
+    </script>
+</body>
+</html>

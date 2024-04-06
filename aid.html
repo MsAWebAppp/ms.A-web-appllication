@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Four Clickable Boxes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #CDFFF6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 320px; 
+            background-color: #CDFFF6; /* Changed background color */
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .box {
+            width: calc(50% - 20px);
+            height: 200px; 
+            background-color: #6EEFD8;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex; /* Added */
+            flex-direction: column; /* Added */
+            justify-content: center; /* Added */
+            align-items: center; /* Added */
+        }
+
+        .box::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            z-index: 1;
+        }
+
+        .box:hover::before {
+            transform: translate(-50%, -50%) scale(2);
+            opacity: 0;
+        }
+
+        .box-content {
+            padding: 20px;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            color: black; 
+            font-weight: bold; 
+        }
+
+        .box img {
+            max-width: 60%; 
+            max-height: 80%;
+            margin-top: 10px; 
+        }
+
+        .box:hover {
+            animation: pop 0.3s ease forwards;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" onclick="alert('Translator clicked!')">
+            <img src="file:///C:/Users/Admin/Downloads/translate4697-removebg-preview.png" alt="Translator Image">
+            <div class="box-content">Translator</div>
+        </div>
+        <div class="box" onclick="alert('Nearby Users clicked!')">
+            <img src="file:///C:/Users/Admin/Downloads/download-removebg-preview.png" alt="Nearby Users Image">
+            <div class="box-content">Nearby Users</div>
+        </div>
+        <div class="box" onclick="alert('Help clicked!')">
+            <img src="file:///C:/Users/Admin/Downloads/Icon-round-Question_mark-removebg-preview.png" alt="Question Mark Image">
+            <div class="box-content">Help</div>
+        </div>
+        <div class="box" onclick="alert('Setting clicked!')">
+            <img src="file:///C:/Users/Admin/Downloads/vector-settings-icon-removebg-preview.png" alt="Settings Image">
+            <div class="box-content">Setting</div>
+        </div>
+    </div>
+</body>
+</html>
